@@ -44,13 +44,17 @@ export interface BIRForm {
   formNumber: string;
   title: string;
   description: string;
-  category: 'individual' | 'business' | 'withholding' | 'registration' | 'other';
+  category: 'individual' | 'business' | 'withholding' | 'registration' | 'other' | 'certificate' | 'capital-gains';
   frequency?: 'monthly' | 'quarterly' | 'annually' | 'as-needed';
   dueDate?: string;
   applicableTo: string[];
   instructions: string[];
   downloadUrl?: string;
   relatedForms?: string[];
+  role?: string;
+  sourceUrl?: string;
+  guidanceUrl?: string;
+  verifiedDate?: string;
 }
 
 export interface TaxRate {

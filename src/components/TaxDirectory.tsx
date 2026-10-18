@@ -1,11 +1,11 @@
 import React from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
-import { Calculator, Info } from 'lucide-react';
+import { Info } from 'lucide-react';
 import { TaxType } from '@/types/tax';
 import { DirectorySection } from '@/types/directory';
 import Navigation from '@/components/Navigation';
 import TaxTypeSelector from '@/components/TaxTypeSelector';
-import CompensationTaxCalculator from '@/components/CompensationTaxCalculator';
+import IncomeTaxCalculator from '@/components/IncomeTaxCalculator';
 import VATCalculator from '@/components/VATCalculator';
 import CustomsDutyCalculator from '@/components/CustomsDutyCalculator';
 import TaxpayerCategories from '@/components/TaxpayerCategories';
@@ -31,10 +31,10 @@ const TaxDirectory: React.FC = () => {
 
   // Determine current tax type from URL parameter or default
   const getCurrentTaxType = (): TaxType => {
-    if (taxType && ['compensation', 'vat', 'customs'].includes(taxType as TaxType)) {
+    if (taxType && ['income', 'vat', 'customs'].includes(taxType as TaxType)) {
       return taxType as TaxType;
     }
-    return 'compensation';
+    return 'income';
   };
 
   const activeSection = getCurrentSection();
@@ -47,14 +47,14 @@ const TaxDirectory: React.FC = () => {
 
   const renderCalculator = () => {
     switch (selectedTaxType) {
-      case 'compensation':
-        return <CompensationTaxCalculator />;
+      case 'income':
+        return <IncomeTaxCalculator key={location.search} />;
       case 'vat':
         return <VATCalculator />;
       case 'customs':
         return <CustomsDutyCalculator />;
       default:
-        return <CompensationTaxCalculator />;
+        return <IncomeTaxCalculator key={location.search} />;
     }
   };
 
@@ -92,7 +92,7 @@ const TaxDirectory: React.FC = () => {
       {/* Navigation */}
       <Navigation />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex-grow">
+      <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex-grow">
 
         {/* Dynamic Content */}
         {renderContent()}
