@@ -14,6 +14,7 @@ export const FAQS: FAQ[] = [
   },
   {
     id: 'vat-vs-percentage-tax',
+    calculators: ['vat', 'percentage'],
     question: 'What\'s the difference between VAT and percentage tax?',
     questionFil: 'Ano ang pagkakaiba ng VAT at percentage tax?',
     answer: 'VAT is a 12% tax on sales that VAT-registered businesses charge their customers. They can subtract the VAT they paid on their own purchases. Percentage tax is 3% of gross sales for businesses that are not VAT-registered, usually those with sales of ₱3 million a year or less. A business is normally under one or the other for its sales, not both. If you choose the 8% income tax option, you do not pay percentage tax.',
@@ -25,6 +26,7 @@ export const FAQS: FAQ[] = [
   },
   {
     id: 'when-file-annual-return',
+    calculators: ['income'],
     question: 'When should I file my annual income tax return?',
     questionFil: 'Kailan ko dapat i-file ang annual income tax return ko?',
     answer: 'Annual income tax returns must be filed by April 15 of the year following the taxable year. For example, your 2024 income tax return should be filed by April 15, 2025. If the deadline falls on a weekend or holiday, it is extended to the next business day.',
@@ -35,6 +37,7 @@ export const FAQS: FAQ[] = [
   },
   {
     id: 'withholding-tax-explained',
+    calculators: ['withholding'],
     question: 'What is withholding tax and who pays it?',
     questionFil: 'Ano ang withholding tax at sino ang nagbabayad nito?',
     answer: 'Withholding tax is tax deducted at source from payments made to individuals or businesses. The payor (employer, client, or business) withholds the tax and remits it to the BIR on behalf of the payee. There are different types: creditable withholding tax (can be claimed as tax credit) and final withholding tax (final tax on passive income).',
@@ -55,6 +58,7 @@ export const FAQS: FAQ[] = [
   },
   {
     id: 'tax-exemptions-deductions',
+    calculators: ['income'],
     question: 'What are the common tax exemptions and deductions available?',
     questionFil: 'Ano ang mga karaniwang tax exemptions at deductions na available?',
     answer: 'Common exemptions include: 13th month pay and bonuses up to ₱90,000, SSS/GSIS benefits, compensation for damages, life insurance proceeds. Common deductions include: mandatory contributions (SSS, PhilHealth, Pag-IBIG), union dues, professional fees and licenses. Additional deductions may apply for business expenses if you\'re self-employed.',
@@ -65,6 +69,7 @@ export const FAQS: FAQ[] = [
   },
   {
     id: 'quarterly-vs-annual-filing',
+    calculators: ['income'],
     question: 'What\'s the difference between quarterly and annual tax filing?',
     questionFil: 'Ano ang pagkakaiba ng quarterly at annual tax filing?',
     answer: 'Quarterly filing (every 3 months) is required for self-employed individuals and businesses to pay taxes on current income. Annual filing is a summary of the entire year\'s income and taxes. Quarterly payments are credited against your annual tax liability. If you paid more quarterly than your annual tax, you may get a refund.',
@@ -75,6 +80,7 @@ export const FAQS: FAQ[] = [
   },
   {
     id: 'capital-gains-tax-real-property',
+    calculators: ['capital-gains'],
     question: 'How is capital gains tax computed on sale of real property?',
     questionFil: 'Paano kinokompute ang capital gains tax sa pagbebenta ng real property?',
     answer: 'Capital gains tax on sale of real property is 6% of the gross selling price or fair market value, whichever is higher. This tax must be paid within 30 days from the date of sale and is a requirement for transferring the title. The tax is separate from income tax and is final.',
@@ -85,6 +91,7 @@ export const FAQS: FAQ[] = [
   },
   {
     id: 'bir-form-2316-explained',
+    calculators: ['income'],
     question: 'What is BIR Form 2316 and when do I need it?',
     questionFil: 'Ano ang BIR Form 2316 at kailan ko ito kailangan?',
     answer: 'BIR Form 2316 is the Certificate of Compensation Payment/Tax Withheld issued by your employer. It shows your total compensation for the year and taxes withheld. You need this form when filing your annual income tax return, applying for loans, or for employment verification. Employers must provide this by January 31.',

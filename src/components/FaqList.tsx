@@ -1,12 +1,13 @@
 import { useId, useState } from 'react';
-import { ChevronDown, ChevronUp, FileText, Globe } from 'lucide-react';
+import { Calculator, ChevronDown, ChevronUp, FileText, Globe } from 'lucide-react';
 import { FAQ } from '@/types/directory';
 import { Badge, Card } from '@/components/ui';
+import { FAQ_CALCULATORS, FaqCalculator, faqCalculators } from '@/data/faqCalculators';
 
 export type FaqLanguage = 'en' | 'fil';
 
 /** Accordion of FAQs. Shared by the FAQs page and topic pages such as VAT. */
-export function FaqList({ items, language = 'en' }: { items: FAQ[]; language?: FaqLanguage }) {
+export function FaqList({ items, language = 'en', hideCalculator }: { items: FAQ[]; language?: FaqLanguage; /** Calculator the list already sits under, so it is not linked again. */ hideCalculator?: FaqCalculator }) {
   const [expanded, setExpanded] = useState<string | null>(null);
   const baseId = useId();
   return (
@@ -41,6 +42,18 @@ export function FaqList({ items, language = 'en' }: { items: FAQ[]; language?: F
               <div id={panelId} className="px-4 sm:px-6 pb-4 sm:pb-6 border-t border-gray-100">
                 <div className="pt-3 sm:pt-4">
                   <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-4">{answer}</p>
+                  {faqCalculators(faq).filter(c => c !== hideCalculator).length > 0 && (
+                    <div className="mb-4 pb-3 sm:pb-4 border-b border-gray-100">
+                      <h4 className="text-sm sm:text-base font-medium text-gray-900 mb-2 flex items-center gap-2">
+                        <Calculator className="w-4 h-4 text-purple-600" aria-hidden="true" />{language === 'fil' ? 'Kaugnay na calculator' : 'Try the calculator'}
+                      </h4>
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                        {faqCalculators(faq).filter(c => c !== hideCalculator).map(c => (
+                          <a key={c} href={FAQ_CALCULATORS[c].href} className="rounded-full bg-purple-50 px-2.5 py-1 text-xs font-medium text-purple-700 hover:bg-purple-100">{FAQ_CALCULATORS[c].label}</a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                   {faq.relatedForms && faq.relatedForms.length > 0 && (
                     <div className="pt-3 sm:pt-4 border-t border-gray-100">
                       <h4 className="text-sm sm:text-base font-medium text-gray-900 mb-2 flex items-center gap-2">
