@@ -6,6 +6,31 @@ A free directory and set of guided calculators for Philippine taxes: what you ow
 
 > General information only, not tax advice. See the [disclaimer](#disclaimer).
 
+## Philosophy
+
+Philippine tax rules are written for lawyers and accountants. This project exists so an ordinary person can understand what they owe and what to do next, without hiring someone just to read the rules. Four principles guide every change.
+
+**1. Speak plainly.**
+- Write for someone who has never filed a return. Short sentences, everyday words.
+- Every technical choice gets an "In simple words" line, and unfamiliar terms (like "input VAT" or "creditable withholding") are underlined and explained on tap. New terms go in `src/data/taxGlossary.ts`.
+- Use the form's own wording only where the user must match it, and then explain it.
+
+**2. Ask, don't overwhelm.**
+- Guided questions beat a wall of fields. Ask one simple question ("Did you sell abroad?"), then show only the amounts that answer needs.
+- Sections are collapsible, the most likely path is open, and optional things stay closed until wanted.
+- Pick sensible defaults, and compute what we can (such as 12% input VAT) so the user types less.
+
+**3. Be complete, not just a number.**
+- A result should answer the whole question: how much, **which BIR form**, **where each amount goes** (we show the form's own item numbers), **when it is due**, and where to read the official source.
+- Show the working ("How we got this number") so users can check it, and carry over what they need next, like excess input VAT to the next quarter.
+
+**4. Be honest about limits.**
+- Cite the law or BIR source behind each rate and rule, and keep rates in `src/data/` where they are easy to audit and update.
+- When a case needs a specialist (treaties, special laws, unusual structures), say so and point to BIR instead of guessing a figure.
+- This is an estimate and a guide, never official advice. A confident wrong answer is worse than "ask BIR".
+
+When in doubt, ask: *would a first-time filer understand this, and would they know what to do next?*
+
 ## What's in it
 
 ### Tax calculators (`#/tax-calculators`)
