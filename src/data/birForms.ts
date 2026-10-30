@@ -630,6 +630,411 @@ export const BIR_FORMS: BIRForm[] = [
     ],
     "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Payment%2FRemittance+Forms",
     "verifiedDate": "October 18, 2026"
+  },
+  {
+      "formNumber": "2550Q",
+      "title": "Quarterly value-added tax return",
+      "description": "Output VAT less creditable input VAT for each taxable quarter. Filed by VAT-registered persons, and by persons who should have registered.",
+      "category": "vat",
+      "frequency": "quarterly",
+      "role": "VAT-registered person, or a person required to register",
+      "dueDate": "25th day after the close of each taxable quarter",
+      "applicableTo": [
+          "VAT-registered person, or a person required to register"
+      ],
+      "instructions": [
+          "Total VATable, zero-rated and exempt sales for the quarter.",
+          "Deduct creditable input VAT, including excess input VAT carried over from earlier quarters.",
+          "File even if there were no sales, until the VAT registration is cancelled."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/BIR/pdf/2550Q%20%20April%202024%20ENCS_Final.pdf",
+      "relatedForms": [
+          "1905",
+          "1600-VT"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=VAT%2FPercentage+Tax+Returns",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/BIR/pdf/2550Q%20guidelines%20April%202024_final.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2550-DS",
+      "title": "Quarterly VAT return for nonresident digital service providers",
+      "description": "Return for a nonresident digital service provider that supplies digital services in the Philippines, such as online marketplaces, platforms, advertising and digital goods.",
+      "category": "vat",
+      "frequency": "quarterly",
+      "role": "Nonresident digital service provider",
+      "dueDate": "See the official guidelines",
+      "applicableTo": [
+          "Nonresident digital service provider"
+      ],
+      "instructions": [
+          "Confirm the service is supplied over the internet or an electronic network and the provider has no physical presence in the Philippines.",
+          "Report VAT on digital services supplied to Philippine consumers.",
+          "Follow the official guidelines for filing and payment."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/BIR/pdf/2550-DS%20%20Jan%202025%20version_Folio.pdf",
+      "relatedForms": [
+          "2550Q"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=VAT%2FPercentage+Tax+Returns",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/BIR/pdf/Final_2550-DS%20Guidelines_01.21.2025.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2551Q",
+      "title": "Quarterly percentage tax return",
+      "description": "Percentage tax for persons who are not VAT-registered with gross annual sales or receipts of ₱3 million or less, and for businesses taxed by statute, such as banks, insurers and certain carriers and franchise holders.",
+      "category": "vat",
+      "frequency": "quarterly",
+      "role": "Non-VAT seller or percentage-tax business",
+      "dueDate": "25 days after the end of each taxable quarter",
+      "applicableTo": [
+          "Non-VAT seller or percentage-tax business"
+      ],
+      "instructions": [
+          "Confirm you are not VAT-registered and are not using the 8% income tax option, which replaces percentage tax.",
+          "Apply the percentage-tax rate to gross sales or receipts of the quarter.",
+          "Deduct any percentage tax already withheld or paid."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2551Q%20Jan%202018%20ENCS%20final%20rev%203_copy.pdf",
+      "relatedForms": [
+          "1701Q",
+          "1600-PT"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=VAT%2FPercentage+Tax+Returns",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2551Q_%20Jan%202018%20Guide.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2552",
+      "title": "Percentage tax return on listed shares and public offerings",
+      "description": "Percentage tax on sales of shares of stock listed and traded through the local stock exchange, and on initial or secondary public offerings of shares.",
+      "category": "vat",
+      "frequency": "as-needed",
+      "role": "Stock broker or corporate issuer",
+      "dueDate": "5 banking days from collection (listed shares and secondary offering); 30 days from listing date (primary offering)",
+      "applicableTo": [
+          "Stock broker or corporate issuer"
+      ],
+      "instructions": [
+          "Identify whether the sale was on the exchange, a primary offering or a secondary offering.",
+          "Apply the rate for that transaction type to the gross selling price.",
+          "File within the deadline for that transaction type."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2552%202018ENCS%20%20Final.pdf",
+      "relatedForms": [
+          "2551Q"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=VAT%2FPercentage+Tax+Returns",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2552%20%20Guidelines%20and%20Instructions.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2553",
+      "title": "Return of percentage tax payable under special laws",
+      "description": "Percentage tax that a special law imposes outside the ordinary Tax Code percentage tax.",
+      "category": "vat",
+      "frequency": "as-needed",
+      "role": "Taxpayer liable for percentage tax under a special law",
+      "dueDate": "On or before the due date stated in the special law",
+      "applicableTo": [
+          "Taxpayer liable for percentage tax under a special law"
+      ],
+      "instructions": [
+          "Identify the special law that imposes the tax.",
+          "Compute the tax at the rate that law sets.",
+          "File by the due date written in that law."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/42792553.pdf",
+      "relatedForms": [
+          "2551Q"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=VAT%2FPercentage+Tax+Returns",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "1600-VT",
+      "title": "Monthly remittance return of value-added tax withheld",
+      "description": "Remits VAT withheld from payments, mainly by government offices paying private suppliers and by private payers paying nonresidents who are subject to VAT.",
+      "category": "withholding",
+      "frequency": "monthly",
+      "role": "Government withholding agent, or private payer of a VAT-subject nonresident",
+      "dueDate": "10th day of the month after the month of withholding",
+      "applicableTo": [
+          "Government withholding agent, or private payer of a VAT-subject nonresident"
+      ],
+      "instructions": [
+          "Confirm the payee's sale is subject to VAT and that you are a required withholding agent.",
+          "Total the VAT withheld for the month.",
+          "Give the payee a certificate of the VAT withheld."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/1600-VT%20January%202018%20ENCS%20final.pdf",
+      "relatedForms": [
+          "2550Q",
+          "2307"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Payment%2FRemittance+Forms",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/local/pdf/BIR%20Form%20No.%201600-VT%202018%20Guidelines.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "1600-PT",
+      "title": "Monthly remittance return of other percentage taxes withheld",
+      "description": "Remits percentage tax withheld by government offices, and by payers whose payees chose to pay their percentage tax through withholding.",
+      "category": "withholding",
+      "frequency": "monthly",
+      "role": "Government withholding agent, or payer of a payee who chose withholding",
+      "dueDate": "10th day of the month after the month of withholding",
+      "applicableTo": [
+          "Government withholding agent, or payer of a payee who chose withholding"
+      ],
+      "instructions": [
+          "Confirm the payee is subject to percentage tax and you are a required or elected withholding agent.",
+          "Total the percentage tax withheld for the month.",
+          "Keep the payee's notice of availment where withholding is by election."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/1600-PT%20January%202018%20ENCS%20final.pdf",
+      "relatedForms": [
+          "2551Q"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Payment%2FRemittance+Forms",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/local/pdf/BIR%20Form%20No.%201600-PT%202018%20Guidelines.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "1901",
+      "title": "Application for registration: self-employed, mixed-income, estates and trusts",
+      "description": "Registers self-employed people, professionals, mixed-income individuals, non-resident aliens engaged in business, and estates and trusts, and sets the tax types they are liable for, including VAT or percentage tax.",
+      "category": "registration",
+      "frequency": "as-needed",
+      "role": "Self-employed individual, estate or trust starting a business",
+      "dueDate": "Before starting business",
+      "applicableTo": [
+          "Self-employed individual, estate or trust starting a business"
+      ],
+      "instructions": [
+          "Choose the tax types you are liable for, such as VAT or percentage tax.",
+          "Register with the Revenue District Office where the business is located.",
+          "Use Form 1905 for later changes."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/BIR/pdf/1901%20October%202025%20ENCS%20Final.pdf",
+      "relatedForms": [
+          "1905"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Application+Forms",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "1903",
+      "title": "Application for registration: corporations, partnerships, cooperatives, government",
+      "description": "Registers corporations, partnerships, cooperatives, associations, government agencies and local government units, and sets their tax types, including VAT or percentage tax.",
+      "category": "registration",
+      "frequency": "as-needed",
+      "role": "Corporation, partnership, cooperative or government entity",
+      "dueDate": "Before starting business",
+      "applicableTo": [
+          "Corporation, partnership, cooperative or government entity"
+      ],
+      "instructions": [
+          "Choose the tax types the entity is liable for, such as VAT or percentage tax.",
+          "Register with the Revenue District Office where the head office is located.",
+          "Use Form 1905 for later changes."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/BIR/pdf/1903%20October%202025%20ENCS%20-%20Final.pdf",
+      "relatedForms": [
+          "1905"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Application+Forms",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "1905",
+      "title": "Application for registration information update, correction or cancellation",
+      "description": "Updates or corrects registration details, such as registered activities and tax types, transfers a business to another district, replaces a lost certificate or TIN card, or cancels a registration.",
+      "category": "registration",
+      "frequency": "as-needed",
+      "role": "Any registered taxpayer",
+      "dueDate": "Each time a registration detail changes",
+      "applicableTo": [
+          "Any registered taxpayer"
+      ],
+      "instructions": [
+          "Use it to add or change tax types, for example when moving from percentage tax to VAT.",
+          "Use it to cancel a registration when closing the business.",
+          "File with the Revenue District Office where you are registered."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/BIR/pdf/1905%20October%202025%20ENCS%20Final.pdf",
+      "relatedForms": [
+          "1901",
+          "1903"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Application+Forms",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2200-A",
+      "title": "Excise tax return for alcohol products",
+      "description": "Excise tax on distilled spirits, wines and fermented liquors, for each place of production.",
+      "category": "excise",
+      "frequency": "as-needed",
+      "role": "Manufacturer or producer of alcohol products",
+      "dueDate": "Before the products are removed from the place of production. A separate return for each place of production.",
+      "applicableTo": [
+          "Manufacturer or producer of alcohol products"
+      ],
+      "instructions": [
+          "Work out the specific tax per proof liter or liter, and the ad valorem tax for spirits.",
+          "File and pay before the products leave the place of production.",
+          "eFPS taxpayers follow the schedule in current BIR issuances."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2200-A%20Jan%202020%20ENCS%20Final%20version2.pdf",
+      "relatedForms": [
+          "2200-T"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Excise+Tax+Return",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2200-T",
+      "title": "Excise tax return for tobacco, heated tobacco, vapor and novel tobacco products",
+      "description": "Excise tax and inspection fees on tobacco products, including cigarettes, cigars, heated tobacco and vapor products.",
+      "category": "excise",
+      "frequency": "as-needed",
+      "role": "Manufacturer or producer of tobacco products",
+      "dueDate": "Before the products are removed from the place of production",
+      "applicableTo": [
+          "Manufacturer or producer of tobacco products"
+      ],
+      "instructions": [
+          "Work out the specific tax per pack, stick or unit, and the ad valorem tax for cigars.",
+          "Include the inspection fee where it applies.",
+          "File and pay before the products leave the place of production."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2200-T%20Aug.%202022%20ENCS%20Final.pdf",
+      "relatedForms": [
+          "2200-A"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Excise+Tax+Return",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2200-P",
+      "title": "Excise tax return for petroleum products",
+      "description": "Excise tax on gasoline, diesel, kerosene, aviation fuel, LPG, lubricants and other petroleum products.",
+      "category": "excise",
+      "frequency": "as-needed",
+      "role": "Manufacturer, refiner or blender of petroleum products",
+      "dueDate": "Before the products are removed from the place of production",
+      "applicableTo": [
+          "Manufacturer, refiner or blender of petroleum products"
+      ],
+      "instructions": [
+          "Work out the specific tax per liter or kilogram for each product.",
+          "Users of denatured alcohol for motive power also file.",
+          "File and pay before the products leave the place of production."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2200-P%20Jan%202020%20ENCS%20final%20version2correct.pdf",
+      "relatedForms": [
+          "2200-A"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Excise+Tax+Return",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2200-AN",
+      "title": "Excise tax return for automobiles and non-essential goods",
+      "description": "Excise tax on automobiles, jewelry, perfumes, toilet waters, and yachts and other pleasure vessels.",
+      "category": "excise",
+      "frequency": "as-needed",
+      "role": "Manufacturer, producer or assembler of automobiles and non-essential goods",
+      "dueDate": "Before the products are removed from the place of production",
+      "applicableTo": [
+          "Manufacturer, producer or assembler of automobiles and non-essential goods"
+      ],
+      "instructions": [
+          "Apply the rate for the net selling price bracket of the automobile.",
+          "Report non-essential goods at 20% of the net wholesale price.",
+          "File and pay before the products leave the place of production."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2200-AN%20Jan%202018%20ENCS%20Final%20version_copy.pdf",
+      "relatedForms": [
+          "2200-A"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Excise+Tax+Return",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2200-AN%20Jan%202018%20ENCS%20guidelines%20final----.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2200-S",
+      "title": "Excise tax return for sweetened beverages",
+      "description": "Excise tax on sweetened beverages, per liter of volume capacity.",
+      "category": "excise",
+      "frequency": "as-needed",
+      "role": "Manufacturer or producer of sweetened beverages",
+      "dueDate": "Before the products are removed from the place of production",
+      "applicableTo": [
+          "Manufacturer or producer of sweetened beverages"
+      ],
+      "instructions": [
+          "Separate beverages sweetened with HFCS from those with other sweeteners.",
+          "Exclude exempt beverages, such as those sweetened only with coconut sap sugar or steviol glycosides.",
+          "File and pay before the products leave the place of production."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2200-S%20Jan%202018%20rev2.pdf",
+      "relatedForms": [
+          "2200-A"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Excise+Tax+Return",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2200-S%20%20Jan%202018%20Guide%20revised.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2000",
+      "title": "Monthly documentary stamp tax declaration and return",
+      "description": "Documentary stamp tax on documents made, signed, issued, accepted or transferred during the month, such as loans, leases, mortgages, insurance policies and share issues.",
+      "category": "dst",
+      "frequency": "monthly",
+      "role": "Person making, signing, issuing, accepting or transferring the document",
+      "dueDate": "Within 5 days after the close of the month of the document",
+      "applicableTo": [
+          "Person making, signing, issuing, accepting or transferring the document"
+      ],
+      "instructions": [
+          "List each document and its tax from the rate table.",
+          "File and pay at an Authorized Agent Bank, or the Revenue Collection Officer where there is no bank.",
+          "eDST users file through the eDST system."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2000-DST%20Jan%202018%20final.pdf",
+      "relatedForms": [
+          "2000-OT"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Documentary+Stamp+Tax+Return",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2000%20Guide%20Jan%202018.pdf",
+      "verifiedDate": "October 30, 2026"
+  },
+  {
+      "formNumber": "2000-OT",
+      "title": "Documentary stamp tax declaration and return for one-time transactions",
+      "description": "Documentary stamp tax on a sale of real property or a sale or transfer of shares of stock that are not traded on an exchange.",
+      "category": "dst",
+      "frequency": "as-needed",
+      "role": "Person making, signing, issuing, accepting or transferring the deed or share transfer",
+      "dueDate": "Within 5 days after the close of the month of the transaction",
+      "applicableTo": [
+          "Person making, signing, issuing, accepting or transferring the deed or share transfer"
+      ],
+      "instructions": [
+          "Use the higher of the price and the fair market value for real property.",
+          "For shares, use the par value, or the DST paid on the original issue for shares without par value.",
+          "Payments above ₱20,000 are made by Manager’s or Cashier’s check."
+      ],
+      "downloadUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2000-OT%20January%202018%20ENCS%20v3.pdf",
+      "relatedForms": [
+          "2000"
+      ],
+      "sourceUrl": "https://www.bir.gov.ph/bir-forms?tab=Documentary+Stamp+Tax+Return",
+      "guidanceUrl": "https://bir-cdn.bir.gov.ph/local/pdf/2000-OT%20GL%20-%20revised2021.pdf",
+      "verifiedDate": "October 30, 2026"
   }
 ];
 
