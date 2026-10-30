@@ -11,6 +11,14 @@ import { FormReferences, SourceLinks } from './TaxReferences';
 import { GlossaryText, TermsPanel } from './TaxTerms';
 
 const Plain = ({ text }: { text?: string }) => text ? <p className="mt-1.5 text-sm leading-relaxed text-slate-700"><span className="font-medium">In simple words: </span>{text}</p> : null;
+/** A numbered step of the form that can be collapsed. The hint shows the current choice while it is closed. */
+function StepSection({ title, hint, startOpen, children }: { title: string; hint?: string; startOpen: boolean; children: ReactNode }) {
+  const [open, setOpen] = useState(startOpen);
+  return <details open={open} onToggle={e => setOpen(e.currentTarget.open)} className="rounded-lg border border-slate-200">
+    <summary className="flex cursor-pointer list-none items-center gap-2 px-3 py-3 [&::-webkit-details-marker]:hidden"><ChevronRight className={`h-4 w-4 shrink-0 text-slate-500 transition-transform ${open ? 'rotate-90' : ''}`} aria-hidden="true" /><span className="text-xs font-bold uppercase tracking-wider text-slate-500">{title}</span>{!open && hint && <span className="ml-auto truncate text-xs font-normal text-slate-500">{hint}</span>}</summary>
+    <div className="space-y-4 border-t border-slate-200 px-3 pb-4 pt-4">{children}</div>
+  </details>;
+}
 /** Optional fields, closed until opened. Starts open only if something in it is already filled in. */
 function OptionalSection({ title, startOpen, children }: { title: string; startOpen: boolean; children: ReactNode }) {
   const [open, setOpen] = useState(startOpen);
@@ -90,13 +98,13 @@ export default function IncomeTaxCalculator() {
       <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">Answer a few questions about who is filing and how the money was earned. We work out the income tax, subtract tax you already paid, and show which BIR form to use. Tap any underlined word to see what it means.</p>
     </div>
     <div className="grid lg:grid-cols-[1.1fr_1fr]">
-      <form onSubmit={e=>{e.preventDefault();setShowErrors(true);document.getElementById('tax-result')?.scrollIntoView({behavior:'smooth',block:'start'});}} className="space-y-6 px-5 py-6 sm:px-8">
-        <fieldset className="space-y-4"><legend className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">01 · Who is filing</legend>
+      <form onSubmit={e=>{e.preventDefault();setShowErrors(true);document.getElementById('tax-result')?.scrollIntoView({behavior:'smooth',block:'start'});}} className="space-y-4 px-5 py-6 sm:px-8">
+        <StepSection title="01 · Who is filing" hint={routeInfo.name} startOpen>
           <div><label htmlFor="taxpayer-kind" className="mb-1.5 block text-sm font-medium text-slate-800">Who is filing?</label><select id="taxpayer-kind" value={input.taxpayer} onChange={e=>resetFor({taxpayer:e.target.value as TaxpayerKind})} className={control}>{TAXPAYER_KINDS.map(option=><option key={option.value} value={option.value}>{option.label}</option>)}</select><Plain text={PLAIN_TAXPAYER[input.taxpayer]} /></div>
           <div><label htmlFor="classification" className="mb-1.5 block text-sm font-medium text-slate-800">{input.taxpayer==='withholding' ? 'Who are you paying?' : 'Which best describes the filer?'}</label><select id="classification" value={input.classification} onChange={e=>resetFor({classification:e.target.value})} className={control}>{CLASSIFICATIONS[input.taxpayer].map(option=><option key={option.value} value={option.value}>{option.label}</option>)}</select><Plain text={PLAIN_CLASSIFICATION[input.classification]} /><GlossaryText text={input.taxpayer==='withholding' ? 'The payee’s classification helps determine the tax treatment. You file as the withholding agent.' : scope} className="mt-1.5 text-xs leading-relaxed text-slate-500" /></div>
           <div><label htmlFor="income-route" className="mb-1.5 block text-sm font-medium text-slate-800">What kind of income is it?</label><select id="income-route" value={input.route} onChange={e=>resetFor({route:e.target.value as IncomeRoute})} className={control}>{availableRoutes(input.taxpayer,input.classification).map(route=><option key={route.id} value={route.id}>{route.name}</option>)}</select><Plain text={PLAIN_ROUTE[input.route]} /><GlossaryText text={routeInfo.description} className="mt-1.5 text-xs leading-relaxed text-slate-500" /></div>
-        </fieldset>
-        <fieldset className="space-y-4 border-t border-slate-100 pt-5"><legend className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">02 · Which period</legend>
+        </StepSection>
+        <StepSection title="02 · Which period" hint={`${input.year} · ${periodLabel(input.period,input.taxpayer)}`} startOpen={false}>
           <div className="grid grid-cols-2 gap-3">
             <div><label htmlFor="tax-year" className="mb-1.5 block text-sm font-medium text-slate-800">{input.taxpayer==='corporation' ? 'Tax year ending' : 'Tax year'}</label><select id="tax-year" value={input.year} onChange={e=>resetFor({year:Number(e.target.value)})} className={control}>{taxYears().map(year=><option key={year}>{year}</option>)}</select></div>
             <div><label htmlFor="filing-period" className="mb-1.5 block text-sm font-medium text-slate-800">Period</label><select id="filing-period" value={input.period} onChange={e=>resetFor({period:e.target.value as FilingPeriod})} className={control}>{periods.map(period=><option key={period} value={period}>{periodLabel(period,input.taxpayer)}</option>)}</select></div>
@@ -104,8 +112,8 @@ export default function IncomeTaxCalculator() {
           {input.taxpayer==='corporation' && !['property','passive','nonresident'].includes(input.route) && <div><label htmlFor="fiscal-end" className="mb-1.5 block text-sm font-medium text-slate-800">Month the tax year ends</label><select id="fiscal-end" value={input.fiscalMonth} onChange={e=>resetFor({fiscalMonth:Number(e.target.value)})} className={control}>{Array.from({length:12},(_,i)=><option key={i} value={i+1}>{new Date(Date.UTC(2026,i,1)).toLocaleString('en-PH',{month:'long',timeZone:'UTC'})}{i===11 ? ' · calendar year' : ' · fiscal year'}</option>)}</select></div>}
           {input.period==='monthly' && <div><label htmlFor="remit-month" className="mb-1.5 block text-sm font-medium text-slate-800">Remittance month</label><select id="remit-month" value={input.month} onChange={e=>resetFor({month:Number(e.target.value)})} className={control}>{Array.from({length:12},(_,i)=><option key={i} value={i+1}>{new Date(Date.UTC(2026,i,1)).toLocaleString('en-PH',{month:'long',timeZone:'UTC'})}</option>)}</select></div>}
           <div className="rounded-lg bg-slate-50 px-3 py-2 text-xs leading-relaxed text-slate-600"><p className="font-medium text-slate-700">{PLAIN_PERIOD[input.period]}</p><GlossaryText text={`${result.coveredPeriod}${input.period.startsWith('q') && input.taxpayer!=='withholding' ? ' · Enter cumulative amounts, not this quarter alone.' : ''}`} className="mt-0.5" /></div>
-        </fieldset>
-        <fieldset className="space-y-4 border-t border-slate-100 pt-5"><legend className="mb-3 text-xs font-bold uppercase tracking-wider text-slate-500">03 · Your income and tax already paid</legend>{fields.length ? renderFields() : <p className="text-sm leading-relaxed text-slate-600">This case needs its specific statutory, treaty or fiduciary rules checked before an estimate is available. The reference information remains available below.</p>}</fieldset>
+        </StepSection>
+        <StepSection title="03 · Your income and tax already paid" startOpen>{fields.length ? renderFields() : <p className="text-sm leading-relaxed text-slate-600">This case needs its specific statutory, treaty or fiduciary rules checked before an estimate is available. The reference information remains available below.</p>}</StepSection>
         <div className="flex flex-wrap items-center gap-3"><button type="submit" className="inline-flex items-center gap-2 rounded-lg bg-blue-700 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-800">Review calculation<ArrowRight className="h-4 w-4" /></button><button type="button" onClick={()=>{setInput(initialInput(params));setShowErrors(false);}} className="inline-flex items-center gap-1.5 px-2 py-2 text-sm text-slate-500 hover:text-slate-900"><RotateCcw className="h-4 w-4" />Reset</button></div>
         <p className="text-xs leading-relaxed text-slate-500">This works out income tax only, not SSS, PhilHealth or Pag-IBIG, or take-home pay. Amounts are rounded to whole pesos, like on BIR forms. Changing who is filing, the kind of income or the period clears the amounts you entered.</p>
       </form>

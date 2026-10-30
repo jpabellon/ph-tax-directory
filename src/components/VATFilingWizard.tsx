@@ -4,7 +4,7 @@ import { VAT_FIELDS, VAT_SECTIONS, VatField, VatLine, calculateVatReturn, format
 import { VAT_QUESTIONS, VAT_QUESTION_SECTIONS, VatQuestion, clearQuestion, questionFilled } from '@/utils/vatWizard';
 import { FormReferences, SourceLinks } from '@/components/TaxReferences';
 import { GlossaryText } from '@/components/TaxTerms';
-import { MoneyInput } from '@/components/calc/CalcParts';
+import { CalcSection, MoneyInput } from '@/components/calc/CalcParts';
 import { VAT_SOURCES } from '@/data/vat';
 
 const PART_TITLES: Record<VatLine['part'], string> = { 'IV-sales': 'Sales and output VAT', 'IV-input': 'Input VAT', 'IV-result': 'Result of Part IV', II: 'Part II · total tax payable' };
@@ -44,7 +44,7 @@ export default function VATFilingWizard() {
   const reset = () => { setValues({}); setSalesIncludeVat(false); setAnswers({}); };
   const renderQuestion = (q: VatQuestion) => {
     const yes = picked(q) === true;
-    return <div key={q.id} className="rounded-lg border border-gray-200 p-3 sm:p-4">
+    return <div key={q.id} className="rounded-lg border border-gray-200 bg-white p-3 sm:p-4">
       <p id={`q-${q.id}`} className="text-sm font-medium text-gray-900">{q.question}</p>
       <p className="mt-0.5 text-xs text-gray-600">{q.plain}</p>
       <div role="group" aria-labelledby={`q-${q.id}`} className="mt-2 inline-flex rounded-lg bg-gray-100 p-1">
@@ -83,11 +83,12 @@ export default function VATFilingWizard() {
           </div>
           <p className="flex items-start gap-2 text-sm text-gray-700"><CalendarDays className="mt-0.5 h-4 w-4 shrink-0 text-blue-600" aria-hidden="true" /><span>Due <strong>{dateFormat.format(due)}</strong>, the 25th day after the quarter closes, for calendar-year filers. Fiscal-year quarters and weekend or holiday moves are not counted.</span></p>
 
-          {VAT_QUESTION_SECTIONS.map((section, i) => <fieldset key={section} className="space-y-3 border-t border-gray-200 pt-5">
-            <legend className="text-xs font-bold uppercase tracking-wider text-gray-500">{String(i + 1).padStart(2, '0')} · {VAT_SECTIONS[section].title}</legend>
-            <p className="text-sm text-gray-600">{VAT_SECTIONS[section].intro}</p>
-            {VAT_QUESTIONS.filter(q => q.section === section).map(renderQuestion)}
-          </fieldset>)}
+          {VAT_QUESTION_SECTIONS.map((section, i) => {
+            const questions = VAT_QUESTIONS.filter(q => q.section === section);
+            return <CalcSection key={section} title={`${String(i + 1).padStart(2, '0')} · ${VAT_SECTIONS[section].title}`} intro={VAT_SECTIONS[section].intro} startOpen={i === 0 || questions.some(q => questionFilled(q, values))}>
+              {questions.map(renderQuestion)}
+            </CalcSection>;
+          })}
           <button type="button" onClick={reset} disabled={!touched && !salesIncludeVat && Object.keys(answers).length === 0} className="inline-flex items-center gap-2 text-sm font-medium text-blue-700 disabled:text-gray-400"><RotateCcw className="h-4 w-4" aria-hidden="true" />Start over</button>
         </div>
 
