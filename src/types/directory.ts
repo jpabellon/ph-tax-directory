@@ -82,6 +82,8 @@ export interface FAQ {
   category: string;
   /** Topic page this FAQ also appears on, e.g. the VAT page. */
   taxType?: 'income' | 'vat' | 'percentage' | 'excise' | 'dst';
+  /** Calculators this FAQ links to. Defaults to the one for its taxType. */
+  calculators?: ('vat' | 'percentage' | 'excise' | 'dst' | 'income' | 'withholding' | 'capital-gains')[];
   tags: string[];
   relatedForms?: string[];
 }

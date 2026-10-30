@@ -46,7 +46,7 @@ export default function IndirectGuide({ formsHeading = 'Which BIR form do I file
 
       <section aria-labelledby={`${faqTopic}-faq-heading`} className="space-y-4">
         <div className="flex items-center gap-2"><HelpCircle className="h-5 w-5 text-purple-600" aria-hidden="true" /><h2 id={`${faqTopic}-faq-heading`} className="text-lg font-semibold text-gray-900 sm:text-xl">{faqHeading}</h2></div>
-        <FaqList items={faqs} />
+        <FaqList items={faqs} hideCalculator={faqTopic} />
         <a href="#/faqs" className="inline-block text-sm font-medium text-blue-700 underline">See all FAQs</a>
       </section>
 
