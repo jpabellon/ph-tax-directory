@@ -15,9 +15,9 @@ export function FormReferences({ numbers }: { numbers: string[] }) {
     </div> : null;
   })}</div>;
 }
-export function SourceLinks({ ids }: { ids: string[] }) {
+export function SourceLinks({ ids, sources = SOURCES }: { ids: string[]; sources?: Record<string, { label: string; url: string }> }) {
   return <div className="flex flex-wrap gap-x-4 gap-y-2">{[...new Set(ids)].map(id => {
-    const source = SOURCES[id as keyof typeof SOURCES];
+    const source = sources[id];
     return source ? <a key={id} href={source.url} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-700 underline">{source.label}</a> : null;
   })}</div>;
 }

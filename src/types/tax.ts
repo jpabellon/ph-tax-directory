@@ -61,10 +61,11 @@ export interface CustomsCalculation {
   };
 }
 
+/** Top-level groups on the Calculators page. 'income' is the Direct group, and keeps its URL so existing links still work. */
 export type TaxType =
   | 'income'
   | 'compensation'
-  | 'vat'
+  | 'indirect'
   | 'customs';
 
 export interface TaxTypeInfo {
@@ -78,21 +79,21 @@ export interface TaxTypeInfo {
 export const TAX_TYPES: TaxTypeInfo[] = [
   {
     id: 'income',
-    name: 'Income Tax',
-    description: 'Individual, business, corporate and investment income',
+    name: 'Direct Taxes',
+    description: 'Income tax and capital gains, with estate and donor’s tax to come',
     rate: 'By taxpayer & income type',
     applicableTo: 'Individuals, entities and withholding agents'
   },
   {
-    id: 'vat',
-    name: 'Value Added Tax (VAT)',
-    description: 'Tax on sale of goods and services',
-    rate: '12%',
-    applicableTo: 'VAT-registered businesses'
+    id: 'indirect',
+    name: 'Indirect Taxes',
+    description: 'VAT, percentage tax, excise tax and documentary stamp tax',
+    rate: '4 taxes',
+    applicableTo: 'Sellers, makers, importers and parties to taxable documents'
   },
   {
     id: 'customs',
-    name: 'Customs Duty & Import Tax (Beta)',
+    name: 'Customs Duties (Beta)',
     description: 'BOC Tax Estimator for imported goods via express couriers',
     rate: 'Variable',
     applicableTo: 'Importers and express shipments'
