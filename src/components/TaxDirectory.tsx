@@ -1,12 +1,12 @@
 import React from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useParams, useNavigate } from 'react-router-dom';
 import { Info } from 'lucide-react';
 import { TaxType } from '@/types/tax';
 import { DirectorySection } from '@/types/directory';
 import Navigation from '@/components/Navigation';
 import TaxTypeSelector from '@/components/TaxTypeSelector';
-import IncomeTaxCalculator from '@/components/IncomeTaxCalculator';
-import VATCalculator from '@/components/VATCalculator';
+import IndirectTaxes from '@/components/IndirectTaxes';
+import DirectTaxes from '@/components/DirectTaxes';
 import CustomsDutyCalculator from '@/components/CustomsDutyCalculator';
 import TaxpayerCategories from '@/components/TaxpayerCategories';
 import FormsLibrary from '@/components/FormsLibrary';
@@ -31,11 +31,15 @@ const TaxDirectory: React.FC = () => {
 
   // Determine current tax type from URL parameter or default
   const getCurrentTaxType = (): TaxType => {
-    if (taxType && ['income', 'vat', 'customs'].includes(taxType as TaxType)) {
+    if (taxType && ['income', 'indirect', 'customs'].includes(taxType as TaxType)) {
       return taxType as TaxType;
     }
     return 'income';
   };
+
+  // Old links: VAT is now a tab of Indirect Taxes, and 'direct' is the Income route.
+  if (taxType === 'vat') return <Navigate to="/tax-calculators/indirect?tax=vat" replace />;
+  if (taxType === 'direct') return <Navigate to="/tax-calculators/income" replace />;
 
   const activeSection = getCurrentSection();
   const selectedTaxType = getCurrentTaxType();
@@ -48,13 +52,13 @@ const TaxDirectory: React.FC = () => {
   const renderCalculator = () => {
     switch (selectedTaxType) {
       case 'income':
-        return <IncomeTaxCalculator key={location.search} />;
-      case 'vat':
-        return <VATCalculator />;
+        return <DirectTaxes />;
+      case 'indirect':
+        return <IndirectTaxes />;
       case 'customs':
         return <CustomsDutyCalculator />;
       default:
-        return <IncomeTaxCalculator key={location.search} />;
+        return <DirectTaxes />;
     }
   };
 

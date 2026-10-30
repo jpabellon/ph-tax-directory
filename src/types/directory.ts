@@ -44,7 +44,7 @@ export interface BIRForm {
   formNumber: string;
   title: string;
   description: string;
-  category: 'individual' | 'business' | 'withholding' | 'registration' | 'other' | 'certificate' | 'capital-gains';
+  category: 'individual' | 'business' | 'withholding' | 'registration' | 'other' | 'certificate' | 'capital-gains' | 'vat' | 'excise' | 'dst';
   frequency?: 'monthly' | 'quarterly' | 'annually' | 'as-needed';
   dueDate?: string;
   applicableTo: string[];
@@ -80,6 +80,8 @@ export interface FAQ {
   answer: string;
   answerFil?: string;
   category: string;
+  /** Topic page this FAQ also appears on, e.g. the VAT page. */
+  taxType?: 'income' | 'vat' | 'percentage' | 'excise' | 'dst';
   tags: string[];
   relatedForms?: string[];
 }

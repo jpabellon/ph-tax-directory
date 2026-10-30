@@ -223,7 +223,7 @@ test('amended payments and negative balance are separate from deductions',()=>{
   ok(input({}, {compensation:'600000',amendedPaid:'5000'}),62500);
 });
 test('all registered form references resolve to actual official PDFs',()=>{
-  assert.equal(BIR_FORMS.length,26);assert.equal(new Set(BIR_FORMS.map(f=>f.formNumber)).size,26);
+  assert.equal(BIR_FORMS.length,43);assert.equal(new Set(BIR_FORMS.map(f=>f.formNumber)).size,43);
   for(const form of BIR_FORMS) {assert.match(form.downloadUrl,/^https:\/\/bir-cdn\.bir\.gov\.ph\/.+\.pdf$/);assert.ok(form.role);assert.ok(form.dueDate);for(const related of form.relatedForms||[]) assert.ok(FORM_BY_NUMBER[related]);}
   for(const route of INCOME_ROUTES) for(const number of route.forms) assert.ok(FORM_BY_NUMBER[number]);
   for(const table of TAX_RATES) for(const row of table.rows) for(const number of row.forms) assert.ok(FORM_BY_NUMBER[number]);
