@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FileText, Calculator } from 'lucide-react';
 import { calculateVAT } from '@/utils/taxCalculator';
 import VATGuide from '@/components/VATGuide';
-import VATReturnCalculator from '@/components/VATReturnCalculator';
+import VATFilingWizard from '@/components/VATFilingWizard';
 import { GlossaryText } from '@/components/TaxTerms';
 
 interface VATCalculation {
@@ -12,7 +12,7 @@ interface VATCalculation {
 }
 
 const VATCalculator: React.FC = () => {
-  const [mode, setMode] = useState<'return' | 'convert'>('return');
+  const [mode, setMode] = useState<'convert' | 'return'>('convert');
   const [amount, setAmount] = useState<string>('');
   const [isVATInclusive, setIsVATInclusive] = useState<boolean>(false);
   const [calculation, setCalculation] = useState<VATCalculation | null>(null);
@@ -39,13 +39,13 @@ const VATCalculator: React.FC = () => {
   return (
     <div className="space-y-4 sm:space-y-6">
       <div role="group" aria-label="Calculator type" className="inline-flex rounded-lg bg-gray-100 p-1">
-        {([['return', 'Quarterly VAT return (2550Q)'], ['convert', 'Add or remove 12% VAT']] as const).map(([id, label]) => (
+        {([['convert', 'Add or remove 12% VAT'], ['return', 'Filing VAT return']] as const).map(([id, label]) => (
           <button key={id} type="button" onClick={() => setMode(id)} aria-pressed={mode === id}
             className={`rounded-md px-3 py-2 text-sm font-medium ${mode === id ? 'bg-white text-blue-700 shadow-sm' : 'text-gray-600 hover:text-gray-900'}`}>{label}</button>
         ))}
       </div>
 
-      {mode === 'return' ? <VATReturnCalculator /> : (
+      {mode === 'return' ? <VATFilingWizard /> : (
         <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6">
           <div className="flex items-center gap-3 mb-4 sm:mb-6">
             <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
