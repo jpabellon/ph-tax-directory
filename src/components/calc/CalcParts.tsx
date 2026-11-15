@@ -14,7 +14,7 @@ const FieldNotes = ({ id, error, hint }: { id: string; error?: string; hint?: st
   {hint && <GlossaryText text={hint} className="mt-1 text-xs leading-relaxed text-gray-500" />}
 </>;
 
-/** A peso amount box. Strips anything that is not a digit, comma or dot. */
+/** A peso amount box. Passes the typed text through unchanged so the validators can reject invalid input such as "-100" or "1e5" instead of silently rewriting it. */
 export function MoneyInput({ label, item, value, onChange, error, hint, placeholder = '0.00' }: {
   label: string; item?: string; value: string; onChange: (value: string) => void; error?: string; hint?: string; placeholder?: string;
 }) {
@@ -24,7 +24,7 @@ export function MoneyInput({ label, item, value, onChange, error, hint, placehol
     <div className="relative">
       <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" aria-hidden="true">₱</span>
       <input id={id} type="text" inputMode="decimal" autoComplete="off" value={value} placeholder={placeholder}
-        onChange={e => onChange(e.target.value.replace(/[^0-9.,]/g, ''))}
+        onChange={e => onChange(e.target.value)}
         aria-invalid={error ? true : undefined} aria-describedby={error ? `${id}-error` : undefined}
         className={`${controlClass} pl-8 ${error ? 'border-red-400' : ''}`} />
     </div>
@@ -32,7 +32,7 @@ export function MoneyInput({ label, item, value, onChange, error, hint, placehol
   </div>;
 }
 
-/** A plain number box, such as litres, packs, days or years. */
+/** A plain number box, such as litres, packs, days or years. Passes the typed text through unchanged so the validators report invalid input. */
 export function NumberInput({ label, value, onChange, error, hint, placeholder = '0', unit }: {
   label: string; value: string; onChange: (value: string) => void; error?: string; hint?: string; placeholder?: string; unit?: string;
 }) {
@@ -41,7 +41,7 @@ export function NumberInput({ label, value, onChange, error, hint, placeholder =
     <FieldLabel id={id} label={label} />
     <div className="relative">
       <input id={id} type="text" inputMode="decimal" autoComplete="off" value={value} placeholder={placeholder}
-        onChange={e => onChange(e.target.value.replace(/[^0-9.,]/g, ''))}
+        onChange={e => onChange(e.target.value)}
         aria-invalid={error ? true : undefined} aria-describedby={error ? `${id}-error` : undefined}
         className={`${controlClass} ${unit ? 'pr-20' : ''} ${error ? 'border-red-400' : ''}`} />
       {unit && <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500" aria-hidden="true">{unit}</span>}
