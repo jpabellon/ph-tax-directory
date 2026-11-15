@@ -111,7 +111,8 @@ export function calculateVatReturn(values: VatValues, options: VatOptions = {}):
 
   // Part IV: sales and output tax
   const vatableNet = options.salesIncludeVat ? half(a('vatableSales') * 100n, 112n) : a('vatableSales');
-  const item31B = rate(vatableNet);
+  // For VAT-inclusive input, VAT is the gross minus the rounded net so net + VAT always equals the entered amount.
+  const item31B = options.salesIncludeVat ? a('vatableSales') - vatableNet : rate(vatableNet);
   const item34A = vatableNet + a('zeroRatedSales') + a('exemptSales');
   const item34B = item31B;
   const item37B = item34B - a('uncollectedOutput') + a('recoveredOutput');

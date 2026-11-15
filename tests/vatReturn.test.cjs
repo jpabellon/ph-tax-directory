@@ -50,6 +50,15 @@ test('VAT-inclusive sales are converted to the net amount first', () => {
   assert.equal(r.outputVat, 1200000n);
 });
 
+test('VAT-inclusive sales reconcile: net plus output VAT equals the entered amount', () => {
+  for (const gross of ['100.01', '0.05', '99.99', '1234.56']) {
+    const r = run({ vatableSales: gross }, { salesIncludeVat: true });
+    const centavos = BigInt(gross.replace('.', ''));
+    assert.equal(r.totalSales + r.outputVat, centavos, gross);
+  }
+  assert.equal(run({ vatableSales: '0.05' }, { salesIncludeVat: true }).outputVat, 1n);
+});
+
 test('output VAT rounds half up to the centavo', () => {
   assert.equal(run({ vatableSales: '0.04' }).outputVat, 0n);   // 0.0048 -> 0.00
   assert.equal(run({ vatableSales: '0.05' }).outputVat, 1n);   // 0.0060 -> 0.01
