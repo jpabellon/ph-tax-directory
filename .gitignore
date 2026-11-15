@@ -34,3 +34,4 @@ output/
 .clinerules
 .github/copilot-instructions.md
 AGENTS.md
+.vexp/backups/.vscode__mcp.json.vexp-bak
